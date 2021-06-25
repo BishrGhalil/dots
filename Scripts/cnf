@@ -1,0 +1,4 @@
+#!/bin/sh
+# A fuzy finder Script for .config files
+# Author: Bishr Ghalil
+du -a ~/.config | awk '{print $2}' | fzf | xargs -r nvim

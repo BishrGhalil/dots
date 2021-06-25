@@ -1,0 +1,146 @@
+#Alacritty:
+
+env:
+  TERM: alacritty
+
+window:
+  padding:
+    x: 25
+    y: 25
+
+    dynamic_padding:  true
+    decoration: none
+
+font:
+  normal:
+    family: Source Code Pro
+
+  bold:
+    family: Source Code Pro
+
+  italic:
+    family: Source Code Pro
+
+  bold_italic:
+    family: Source Code Pro
+
+  size: 8
+
+#colors:
+# Default colors
+#   primary:
+#     background: '0x181a20'
+#     foreground: '0xeeffff'
+#
+#   cursor:
+#     text: '0x212121'
+#     cursor: '0xeeffff'
+# 
+#   # Normal colors
+#   normal:
+#     black:   '0x212121'
+#     red:     '0xa30041'
+#     green:   '0xc3e88d'
+#     yellow:  '0xffcb6b'
+#     blue:    '0x82aaff'
+#     magenta: '0xc792ea'
+#     cyan:    '0x89ddff'
+#     white:   '0xeeffff'
+# 
+#   # Bright colors
+#   bright:
+#     black:   '0x4a4a4a'
+#     red:     '0xe60056'
+#     green:   '0xc3e88d'
+#     yellow:  '0xffcb6b'
+#     blue:    '0x82aaff'
+#     magenta: '0xc792ea'
+#     cyan:    '0x89ddff'
+#     white:   '0xffffff'
+schemes:
+  # Tokyo Night theme, based on both:
+  #   https://github.com/ghifarit53/tokyonight-vim
+  #   https://github.com/enkia/tokyo-night-vscode-theme
+  tokyo-night: &tokyo-night
+    # Default colors
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xa9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x787c99'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+  tokyo-night-storm: &tokyo-night-storm
+    # Default colors
+    primary:
+      background: '0x24283b'
+      foreground: '0xa9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x9699a8'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+indexed_colors:
+    - { index: 16, color: '0xf78c6c' }
+    - { index: 17, color: '0xff5370' }
+    - { index: 18, color: '0x303030' }
+    - { index: 19, color: '0x353535' }
+    - { index: 20, color: '0xb2ccd6' }
+    - { index: 21, color: '0xeeffff' }
+
+background_opacity: 1.00
+
+# cursor:
+#   style: Underline
+
+#   unfocused_hollow: false
+
+live_config_reload: true
+                 
+key_bindings:
+
+  - { key: Key0, mods: Control, action: ResetFontSize }
+
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+
+    # normal dark theme
+colors: *tokyo-night

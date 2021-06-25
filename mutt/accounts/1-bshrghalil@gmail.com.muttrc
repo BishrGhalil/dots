@@ -1,0 +1,27 @@
+# vim: filetype=neomuttrc
+# muttrc file for account bshrghalil@gmail.com
+set realname = "bshrghalil"
+set from = "bshrghalil@gmail.com"
+set sendmail = "msmtp -a bshrghalil@gmail.com"
+alias me bshrghalil <bshrghalil@gmail.com>
+set folder = "/home/bishr/.local/share/mail/bshrghalil@gmail.com"
+set header_cache = /home/bishr/.cache/mutt-wizard/bshrghalil@gmail.com/headers
+set message_cachedir = /home/bishr/.cache/mutt-wizard/bshrghalil@gmail.com/bodies
+set mbox_type = Maildir
+
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index,pager M noop
+bind index,pager C noop
+bind index gg first-entry
+unmailboxes *
+unalternates *
+unset signature
+macro index o "<shell-escape>mbsync bshrghalil@gmail.com<enter>" "run mbsync to sync bshrghalil@gmail.com"
+
+mailboxes "=INBOX" "=Mailspring/Snoozed" "=[Gmail]/&BicGRAYxBjMGJwYmBkQ- &BicGRAZFBkUGSgYyBik- &BigGRgYsBkUGKQ-" "=[Gmail]/&BicGRAYxBjMGJwYmBkQ- &BjoGSgYx- &BicGRAZFBjEGOgZIBig- &BkEGSgZHBic-" "=[Gmail]/&BicGRAZFBkcGQAZFBkQGJwYq-" "=[Gmail]/&BigGMQZKBi8- &BkUGMQYzBkQ-" "=[Gmail]/&BkMGRA- &BicGRAYoBjEGSgYv-" "=[Gmail]/&BkUGMwZIBi8GUQYnBio-" "=[Gmail]/&BkUGRwZF-"
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index,pager Mi ";<save-message>=INBOX<enter>" "move mail to inbox"
+macro index,pager Ci ";<copy-message>=INBOX<enter>" "copy mail to inbox"
+set spoolfile = "+INBOX"
