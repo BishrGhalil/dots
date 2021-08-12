@@ -1,4 +1,4 @@
-/* See LICENSE file for copyright and license details. */
+
 
 /* interval between updates (in ms) */
 const unsigned int interval = 1000;
@@ -66,15 +66,17 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format   argument */
 	{ ipv4, "  %s |",  "wlo1" },
-	{ wifi_perc, "  %s%%, ",  "wlo1" },
+	{ wifi_perc, "   %s%%, ",  "wlo1" },
 	{ wifi_essid, "%s ",  "wlo1" },
 	{ netspeed_tx, "%s ",  "wlo1" },
-	{ netspeed_rx, "%s |",  "wlo1" },
+	{ netspeed_rx, "%s ",  "wlo1" },
+	{ run_command, "vpn %s |","~/Documents/Scripts/vpn" },
 	{ ram_used, "   %s of ",  NULL },
 	{ ram_total, "%s |",  NULL },
 	{ cpu_perc, "  %s%% |",  NULL },
 	{ battery_perc, "   (%s%%) ",  "BAT0" },
 	{ battery_remaining, "(%s) ",  "BAT0" },
 	{ battery_state, "(%s) |",  "BAT0" },
+	{ run_command, "Volume: %s |",  "~/Documents/Scripts/volume" },
 	{ datetime, "  %s",  "%a, %b%d %R" },
 };

@@ -1,0 +1,12 @@
+#!/bin/sh
+stat=$(nmcli | grep 'proton' | sed -n 1p | awk '{print $2}')
+if [ "$stat" = "connected" ];then
+        doas protonvpn d
+        notify-send -u low "Protonvpn" "Disconnected"
+        exit 1
+else
+        notify-send -u low "Protonvpn" "Connecting..."
+        doas protonvpn c -f
+        notify-send -u low "Protonvpn" "Connected (:"
+        exit 0
+fi

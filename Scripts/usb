@@ -4,6 +4,12 @@
 # Last_Edit: Jun 19 2021
 device=$(lsblk -pl | grep -v 'loop' | grep -v 'sda' | awk '{print $1,$4}' | sed -n 2,10p | dmenu -i -fn 'Source Code Pro:size=10' -nb '#1a1b2c' -nf '#f7768e' -sb '#ff9e64' -sf '#1a1b27'| awk '{print $1}')
 
-chose=$(printf "/mnt\n/mnt/sdb1\n/mnt/sdb2\n/mnt/sdb3" | dmenu -i -fn 'Source Code Pro:size=10' -nb '#1a1b2c' -nf '#f7768e' -sb '#ff9e64' -sf '#1a1b27')
+fstype=$(lsblk -fpl | grep -v 'loop' | grep -v 'sda' | awk '{print $1,$2}' | sed -n 2,10p |awk '{print $2}')
 
-doas mount $device $chose
+mpath=$(printf "/mnt\n/mnt/sdb1\n/mnt/sdb2\n/mnt/sdb3" | dmenu -i -fn 'Source Code Pro:size=10' -nb '#1a1b2c' -nf '#f7768e' -sb '#ff9e64' -sf '#1a1b27')
+
+if [ $fstype = "ntfs" ];then
+        doas mount -t ntfs-3g "$device" "$mpath"
+else
+doas mount "$device" "$mpath"
+fi
