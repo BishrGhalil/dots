@@ -1,0 +1,31 @@
+#!/bin/sh
+# A script to initialize a programing project
+# Author: Bishr Ghalil
+
+echo -n "Project's Name: "
+read pjt_name
+
+pjt_folder=$(pwd)"/"$pjt_name
+echo [#] Creating Project At: $pjt_folder
+
+echo "[#] Making dirs $pjt_name, github, src"
+
+mkdir $pjt_folder
+mkdir -p $pjt_folder/github
+mkdir -p $pjt_folder/src
+
+
+echo "[#] Making files README.md, gitignore, LICENSE, Makefile"
+
+touch $pjt_folder/.gitignore
+touch $pjt_folder/LICENSE
+echo "# $pjt_name" > "$pjt_folder/README.md"
+touch "$pjt_folder/src/Makefile"
+
+
+echo "[#] Git..."
+cd $pjt_name
+git init
+
+
+echo "[#] Done."
