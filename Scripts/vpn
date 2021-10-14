@@ -1,7 +1,7 @@
 #!/bin/sh
 stat=$(nmcli | grep 'proton' | sed -n 1p | awk '{print $2}')
 if [[ $stat == "" ]];then
-        echo "disconnected"
+        echo dis
 else 
-        echo "$stat"
+        echo conn
 fi

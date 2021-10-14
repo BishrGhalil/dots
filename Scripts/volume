@@ -1,2 +1,0 @@
-#!/bin/sh
-echo $(amixer | sed -n 7p | awk '{print $5}')

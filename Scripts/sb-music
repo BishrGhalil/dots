@@ -1,0 +1,10 @@
+#!/bin/bash
+if ! mpc >/dev/null ; then
+        printf "MPD ❌\n"
+        exit
+fi
+if mpc | grep paused > /dev/null; then
+        printf "Song: [Paused] %s\n" "$(mpc | sed -n 1p)"
+else
+        printf "Song: %s\n" "$(mpc | sed -n 1p)"
+fi

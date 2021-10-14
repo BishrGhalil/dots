@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "$(nmcli | sed -n 5p | awk '{ print $2 }')"
