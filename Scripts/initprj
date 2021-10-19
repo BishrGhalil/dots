@@ -15,17 +15,24 @@ mkdir -p $pjt_folder/github
 mkdir -p $pjt_folder/src
 
 
-echo "[#] Making files README.md, gitignore, LICENSE, Makefile"
+echo "[#] Making files README.md, gitignore, LICENSE (MIT), Makefile"
 
 touch $pjt_folder/.gitignore
-touch $pjt_folder/LICENSE
+cp $HOME/Scripts/LICENSE $pjt_folder/
 echo "# $pjt_name" > "$pjt_folder/README.md"
-touch "$pjt_folder/src/Makefile"
+touch "$pjt_folder/Makefile"
+echo "all: install
+install:
+    cp $pjt_name /usr/bin
+uninstall:
+    rm -rf /usr/bin/$pjt_name" > "$pjt_folder/Makefile"
 
 
 echo "[#] Git..."
 cd $pjt_name
 git init
+git add .
+git commit -m "First commit"
 
 
 echo "[#] Done."
