@@ -126,7 +126,7 @@ width: 50% !important;
   border-radius: var(--mff-tab-border-radius) !important;
   border-width: 0;
   height: var(--mff-tab-height) !important;
-  margin-bottom: 4px !important;
+  margin-bottom: 0px !important;
   margin-inline-end: 4px !important;
   margin-top: 4px !important;
   max-height: var(--mff-tab-height) !important;
@@ -348,7 +348,7 @@ image#sidebar-icon {
 toolbarseparator {
   display: none;
 }
-/* ----------------------------------------------------------- */
+/* ------------------------- ONE LINER ---------------------------------- */
 
 /* Modify it to suit your needs */
 @media screen and (min-width: 1100px){
