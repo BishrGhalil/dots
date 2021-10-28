@@ -1,0 +1,14 @@
+#!/bin/bash
+
+val=$(echo -e "100\n90\n80\n70\n60\n50\n40\n30\n20\n10" | \
+    dmenu -p "Brightness: " -l 10)
+
+res=$(awk -v n=$val 'BEGIN {printf "%.1f\n", (n/100)}')
+
+if [ $res == 0.0 ]
+then
+    exit;
+fi
+
+xrandr --output LVDS-1 --brightness $res
+exit 0;
