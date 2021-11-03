@@ -1,11 +1,3 @@
-"  ____ _____ 
-" |  _ \_   _|  Derek Taylor (DistroTube)
-" | | | || |    http://www.youtube.com/c/DistroTube
-" | |_| || |    http://www.gitlab.com/dwt1/
-" |____/ |_|
-"        
-" A customized init.vim for neovim (https://neovim.io/)     
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -23,14 +15,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
     Plug 'frazrepo/vim-rainbow'
 "{{ File management }}
-    Plug 'vifm/vifm.vim'                               " Vifm
     Plug 'scrooloose/nerdtree'                         " Nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
+
     Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
 "{{ Productivity }}
     Plug 'vimwiki/vimwiki'                             " VimWiki 
     Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
-    Plug 'townk/vim-autoclose'
+    Plug 'gosukiwi/vim-smartpairs'			" autoclose pairs
 "{{ Tim Pope Plugins }}
     Plug 'tpope/vim-surround'                          " Change surrounding marks
 "{{ Syntax Highlighting and Colors }}
@@ -42,8 +34,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
     Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
-""{{ Dashboard }}
-    ""Plug 'glepnir/dashboard-nvim'                      " Dashboard
 "{{ Comment the code }}"
     Plug 'tpope/vim-commentary'                          " comment the code using key map: gcc
 
@@ -101,13 +91,12 @@ let g:rehash256 = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 :imap ii <Esc>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status Line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'one',
       \ }
 
 " Always show statusline
@@ -122,8 +111,7 @@ set noshowmode
 " set expandtab                   " Use spaces instead of tabs.
 " set smarttab                    " Be smart using tabs ;)
 " set tabstop=1                   " One tab == four spaces.
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set shiftwidth=4		  " Set tab to four spaces """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Uncomment to autostart the NERDTree
@@ -185,16 +173,7 @@ highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none
 " highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
 " highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
 " highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vifm
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
-
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VimWiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -205,14 +184,14 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 " => Vim-Instant-Markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:instant_markdown_autostart = 0         " Turns off auto preview
-let g:instant_markdown_browser = "surf"      " Uses surf for preview
+let g:instant_markdown_browser = "netsurf"      " Uses netsurf for preview
 map <Leader>md :InstantMarkdownPreview<CR>   " Previews .md file
 map <Leader>ms :InstantMarkdownStop<CR>      " Kills the preview
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Open terminal inside Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>tt :vnew term://fish<CR>
+map <Leader>tt :vnew term://zsh<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mouse Scrolling
@@ -228,14 +207,18 @@ autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Splits and Tabbed Files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow splitright
+set splitbelow
+set splitright
 
 " Remap splits navigation to just CTRL + hjkl
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-nnoremap <C-j> <d><d><j><P>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Swap top/bottom or left/right split
+nnoremap <Leader><C-r> <C-w>r
 
 " Make adjusing split sizes a bit more friendly
 noremap <silent> <C-Left> :vertical resize +3<CR>
@@ -272,3 +255,20 @@ set guifont=SauceCodePro\ Nerd\ Font:h15
 "set guifont=JetBrains\ Mono:h15
 
 "let g:neovide_transparency=0.95
+"
+augroup cursor_behaviour
+    autocmd!
+
+    " reset cursor on start:
+    autocmd VimEnter * silent !echo -ne "\e[2 q"
+    " cursor blinking bar on insert mode
+    let &t_SI = "\e[5 q"
+    " cursor steady block on command mode
+    let &t_EI = "\e[2 q"
+
+    " highlight current line when in insert mode
+    autocmd InsertEnter * set cursorline
+    " turn off current line highlighting when leaving insert mode
+    " autocmd InsertLeave * set nocursorline
+
+augroup END
