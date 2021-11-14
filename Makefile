@@ -1,5 +1,6 @@
 all: install
 
 install:
-	cp -r .config Scripts ~/
+	cp -r .config ~/
+	cp -r Scripts/* /usr/local/bin/
 	cp -r chrome ~/.mozilla/firefox/*.default-release/
