@@ -1,0 +1,78 @@
+# SUPER + KEY
+super + Return
+    st -e zsh
+######################
+# SUPER + SHIFT + KEY#
+######################
+super + shift + Return
+    dmenu_run -i -fn 'Source Code Pro:size=10'
+
+super + shift + i
+    amixer set Master 5%- && pkill -RTMIN+30 dwmblocks
+
+super + shift + u
+    amixer set master 5%+ && pkill -rtmin+30 dwmblocks
+
+super + shift + t
+    amixer set Master toggle && \
+    pkill -RTMIN+30 dwmblocks && \
+    notify-send -t 500 -u low \"VOLUME TOGGLED\"
+
+######################
+# SUPER + CTRL + KEY #
+######################
+super + ctrl + Return
+    alacritty -e bash
+
+super + ctrl + n
+    nvim ~/.config/sxhkd/sxhkdrc
+
+######################
+# SUPER + ALT + KEY  #
+######################
+super + alt + Return
+    emacsclient -c -a \"emacs\"
+
+super + alt + s
+    maim ~/Pictures/ScreenShots/$(date +%s).png; \
+    notify-send -t 600 \"MAIM\" \"Captured.\"
+
+super + alt + a
+    maim -i $(xdotool getactivewindow) | \
+    xclip -selection clipboard -t image/png; \
+    notify-send -t 600 \"MAIM\" \"Copied to cliboard.\"
+
+super + alt + f
+    st -e lf
+
+super + alt + p
+    st -e htop
+
+super + alt + m
+    st -e ncmpcpp-ueberzug
+
+super + alt + t
+    mpc toggle; notify-send -t 500 \"MPC\" \"TOGGLED\"
+
+super + alt + {period, comma}
+    mpc {next, prev} && \
+    notify-send -u normal -t 1000 "MPC" "$(mpc | sed -n 1p)"
+
+super + alt + {bracketleft, bracketright}
+    mpc seek {-10, +10} && \
+    notify-send -t 500 -u low "MPC" "$(mpc | sed -n 3p | awk '{print $1$2}')"
+
+super + alt + e
+    st -e neomutt
+
+super + alt + w
+    sxiv -t ~/wallpapers
+
+super + alt + v
+    bash $HOME/Documents/Scripts/vpnconn
+
+super + alt + z
+    zathura
+
+super + alt + b
+    firefox

@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="$PATH:/home/bishr/.local/bin"
+export PATH="$PATH:$HOME.local/bin"
 export PATH="$HOME/.local/bin${PATH:+:${PATH}}"
 export PATH="${PATH}:${HOME}/.local/bin/"
 
