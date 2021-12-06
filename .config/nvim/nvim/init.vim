@@ -1,3 +1,4 @@
+let mapleader = "\<space>"
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -8,7 +9,7 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 "{{ The Theme}}
-    Plug 'dracula/vim', {'name': 'dracula'}
+    "Plug 'dracula/vim', {'name': 'dracula'}
     "{{ The Basics }}
     Plug 'gmarik/Vundle.vim'                           " Vundle
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
@@ -25,6 +26,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'gosukiwi/vim-smartpairs'			" autoclose pairs
 "{{ Tim Pope Plugins }}
     Plug 'tpope/vim-surround'                          " Change surrounding marks
+    "{{ Themes }}
+    Plug 'drewtempelmeyer/palenight.vim'
+    Plug 'joshdick/onedark.vim'
+
 "{{ Syntax Highlighting and Colors }}
     Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
     Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
@@ -36,6 +41,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
 "{{ Comment the code }}"
     Plug 'tpope/vim-commentary'                          " comment the code using key map: gcc
+    " {{ START MENU }}
+    Plug 'mhinz/vim-startify'
 
 Plug 'liuchengxu/vim-clap'
 
@@ -76,14 +83,20 @@ set path+=**					" Searches current directory recursively.
 set wildmenu					" Display all matches when tab complete.
 set incsearch                   " Incremental search
 set hidden                      " Needed to keep multiple buffers open
-set nobackup                    " No auto backups
+set backup                      " auto backups
 set noswapfile                  " No swap
 set t_Co=256                    " Set if term supports 256 colors.
 set number relativenumber       " Display line numbers
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
-packadd! dracula
+set ignorecase				" Do case insensitive matching
+set smartcase				" Do smart case matching
+set fillchars+=vert:\ ,fold:-,eob:\ 
+set nolist
+set listchars=tab:│\ 
+" packadd! dracula
 syntax enable
-colorscheme dracula
+set background=dark
+colorscheme palenight
 let g:rehash256 = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -96,7 +109,7 @@ let g:rehash256 = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'palenight',
       \ }
 
 " Always show statusline
@@ -108,8 +121,27 @@ set noshowmode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Enable and disable auto comment
+map <leader>c :setlocal formatoptions-=cro<CR>
+map <leader>C :setlocal formatoptions=cro<CR>
+
+"Enable and disable auto indentation
+map <leader>a :setlocal autoindent<CR>
+map <leader>A :setlocal noautoindent<CR>
+
+" Yank all content
+nnoremap <leader>y ggVGy<C-o>
+
+" Swap line with lower line
+map <leader>j ddp
+map <leader>k ddkP
+
+" Guide navigation
+inoremap <leader><Tab> <Esc>/TODO<Enter>"_c4l
+noremap <leader><Tab> <Esc>/TODO<Enter>"_c4l
+
 " set expandtab                   " Use spaces instead of tabs.
-" set smarttab                    " Be smart using tabs ;)
+set smarttab                    " Be smart using tabs ;)
 " set tabstop=1                   " One tab == four spaces.
 set shiftwidth=4		  " Set tab to four spaces """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERDTree
@@ -204,7 +236,7 @@ set mouse=a
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Splits and Tabbed Files
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitbelow
@@ -229,6 +261,13 @@ noremap <silent> <C-Down> :resize -3<CR>
 " Change 2 split windows from vert to horiz or horiz to vert
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
+" Change current buffer
+map <Leader>1 :buffer 1<CR>
+map <Leader>2 :buffer 2<CR>
+map <Leader>3 :buffer 3<CR>
+map <Leader>4 :buffer 4<CR>
+map <Leader>5 :buffer 5<CR>
+map <Leader>6 :buffer 5<CR>
 
 " Removes pipes | that act as seperators on splits
 set fillchars+=vert:\ 
@@ -272,3 +311,5 @@ augroup cursor_behaviour
     " autocmd InsertLeave * set nocursorline
 
 augroup END
+" Italics for my favorite color scheme
+let g:palenight_terminal_italics=1
