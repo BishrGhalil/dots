@@ -1,18 +1,17 @@
 # SUPER + KEY
 super + Return
     st -e zsh
+
+super + Escape
+    pkill -USR1 -x sxhkd
 ######################
 # SUPER + SHIFT + KEY#
 ######################
 super + shift + Return
     dmenu_run -i -fn 'Source Code Pro:size=10'
 
-super + shift + i
-    amixer set Master 5%- && pkill -RTMIN+30 dwmblocks
-
-super + shift + u
-    amixer set master 5%+ && pkill -rtmin+30 dwmblocks
-
+super + shift + {u, i}
+    amixer set Master {5%+, 5%-} && pkill -RTMIN+30 dwmblocks
 super + shift + t
     amixer set Master toggle && \
     pkill -RTMIN+30 dwmblocks && \
@@ -25,13 +24,13 @@ super + ctrl + Return
     alacritty -e bash
 
 super + ctrl + n
-    nvim ~/.config/sxhkd/sxhkdrc
+    st -e nvim ~/.config/sxhkd/sxhkdrc
 
 ######################
 # SUPER + ALT + KEY  #
 ######################
-super + alt + Return
-    emacsclient -c -a \"emacs\"
+super + alt + c
+    emacs
 
 super + alt + s
     maim ~/Pictures/ScreenShots/$(date +%s).png; \
@@ -40,7 +39,7 @@ super + alt + s
 super + alt + a
     maim -i $(xdotool getactivewindow) | \
     xclip -selection clipboard -t image/png; \
-    notify-send -t 600 \"MAIM\" \"Copied to cliboard.\"
+    notify-send -t 600 "MAIM" "Copied to cliboard.";
 
 super + alt + f
     st -e lf
@@ -50,6 +49,9 @@ super + alt + p
 
 super + alt + m
     st -e ncmpcpp-ueberzug
+
+super + alt + v
+    st -t scratchpad -e cava
 
 super + alt + t
     mpc toggle; notify-send -t 500 \"MPC\" \"TOGGLED\"
@@ -62,17 +64,30 @@ super + alt + {bracketleft, bracketright}
     mpc seek {-10, +10} && \
     notify-send -t 500 -u low "MPC" "$(mpc | sed -n 3p | awk '{print $1$2}')"
 
+super + alt + slash
+    mpc toggle
+
+super + alt + {u, i}
+    mpc volume {+10, -10}
+
 super + alt + e
     st -e neomutt
 
 super + alt + w
     sxiv -t ~/wallpapers
 
-super + alt + v
-    bash $HOME/Documents/Scripts/vpnconn
-
 super + alt + z
     zathura
 
 super + alt + b
     firefox
+
+super + alt + n
+    st -e nvim "$HOME/notepad.text"
+
+super + alt + Return
+    st -e nvim
+
+# CHANGE KEYBOARD LAYOUT
+super + space + {a, e}
+  doas setxkbmap -layout {ar, us}
