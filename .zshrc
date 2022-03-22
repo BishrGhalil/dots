@@ -98,7 +98,7 @@ zstyle ':vcs_info:git:*' formats ' %b'
  
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
-PROMPT='%F{#dfdfdf}${PWD/#$HOME/~} %F{#4db5bd}${vcs_info_msg_0_}> '
+PROMPT='%F{#dfdfdf}${PWD/#$HOME/~} %F{#4db5bd}${vcs_info_msg_0_}> %F{#ffffff}'
 # export PROMPT="%F{#dfdfdf}%~ %F{#ff6c6b} ${vcs_info_msg_0_}> "
 
 
